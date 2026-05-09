@@ -3,9 +3,9 @@ import Icon from '../components/Icons'
 import useApi from '../hooks/useApi'
 
 export default function HomePage() {
-  const { data: services, loading: sLoading } = useApi('/api/services')
-  const { data: blogs, loading: bLoading } = useApi('/api/blogs')
-  const { data: dashboard, loading: dLoading } = useApi('/api/dashboard/stats')
+const { data: services, loading: sLoading } = useApi('/services')
+const { data: blogs, loading: bLoading } = useApi('/blogs')
+const { data: dashboard, loading: dLoading } = useApi('/dashboard/stats')
   const stats = dashboard?.stats || {}
   // Sirf pehle 3 services dikhane ke liye
   const displayServices = services?.slice(0, 3) || []
