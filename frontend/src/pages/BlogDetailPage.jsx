@@ -17,6 +17,9 @@ export default function BlogDetailPage() {
     }
   }, [allBlogs, slug])
 
+  // Alternative: Use derived state to avoid setState in effect
+  // const post = allBlogs?.find(b => b.slug === slug) ?? null
+
   const getImageUrl = (img) => {
     if (!img) return null;
     if (img.startsWith('http')) return img;

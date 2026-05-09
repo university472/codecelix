@@ -153,7 +153,7 @@ export default function AdminLayout({ children }) {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-line">
+        <div className="p-3 border-t border-line">
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 w-full p-4 text-danger hover:bg-danger/10 rounded-2xl transition-all"
