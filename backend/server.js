@@ -32,23 +32,30 @@ app.use(
   })
 )
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:5174',
-  'https://codecelix-wine.vercel.app',
-  'https://codecelix-fm62j23e8-university472s-projects.vercel.app'
-]
+// const allowedOrigins = [
+//   'http://localhost:5173',
+//   'http://localhost:5174',
+//   'https://codecelix-wine.vercel.app',
+//   'https://codecelix-fm62j23e8-university472s-projects.vercel.app'
+// ]
+
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       // Allow requests with no origin
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true)
+//       } else {
+//         callback(new Error('CORS Not Allowed'))
+//       }
+//     },
+//     credentials: true
+//   })
+// )
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true)
-      } else {
-        callback(new Error('CORS Not Allowed'))
-      }
-    },
+    origin: true,
     credentials: true
   })
 )
@@ -109,24 +116,28 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
 ====================================================== */
 
 app.use('/api/auth', authRoutes)
-
+console.log('Auth Routes:', typeof authRoutes)
 app.use('/api/blogs', blogRoutes)
+console.log('Blog Routes:', typeof blogRoutes)
 app.use('/api/projects', projectRoutes)
+console.log('Project Routes:', typeof projectRoutes)
 app.use('/api/contact', contactRoutes)
+console.log('Contact Routes:', typeof contactRoutes)
 app.use('/api/dashboard', dashboardRoutes)
-app.use('/api/services', serviceRoutes)
+console.log('Dashboard Routes:', typeof dashboardRoutes)
 
+app.use('/api/services', serviceRoutes)
+console.log('Service Routes:', typeof serviceRoutes)
 /* ======================================================
    404 ROUTE HANDLER
 ====================================================== */
 
-app.use('*', (req, res) => {
+app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: `Route Not Found: ${req.originalUrl}`
   })
 })
-
 /* ======================================================
    GLOBAL ERROR HANDLER
 ====================================================== */
